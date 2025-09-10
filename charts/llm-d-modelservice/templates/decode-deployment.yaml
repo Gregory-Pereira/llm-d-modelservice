@@ -23,9 +23,6 @@ spec:
         {{- toYaml .Values.decode.podAnnotations | nindent 8 }}
       {{- end }}
     spec:
-      {{- with .Values.routing }}
-      {{- (include "llm-d-modelservice.routingProxy" .) | nindent 6 }}
-      {{- end }}
       {{- (include "llm-d-modelservice.modelPod" (dict "pdSpec" .Values.decode "Values" .Values "Release" .Release "Chart" .Chart)) | nindent 4 }}
       {{- with .Values.decode.containers }}
       containers:
